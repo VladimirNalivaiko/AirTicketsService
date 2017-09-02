@@ -1,0 +1,141 @@
+﻿@import url(https://fonts.googleapis.com/css?family=Lato|Source+Sans+Pro|Bree+Serif);
+
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    background-color: #ccc;
+}
+
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+
+#departure_place_flight_wrapper, #arrival_place_flight_wrapper{
+    z-index: 99;
+    background-color: white;
+    display: none;
+    position: absolute;
+    width: 280px;
+    max-height: 10em;
+    border: 1px solid #ccc;
+    border-radius: 4px;  
+    overflow: auto;
+}
+
+#departure_place_flight_wrapper .advice_variant, #arrival_place_flight_wrapper .advice_variant{
+	cursor: pointer;
+	text-align: left;
+    padding-left: 12px;   
+}
+
+#departure_place_flight_wrapper .advice_variant:hover, #arrival_place_flight_wrapper .advice_variant:hover{
+	background-color:#c6d7f7;   
+    border-top: 1px solid #66afe9; 
+    border-bottom: 1px solid #66afe9; 
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .1);
+          box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .1);
+}
+
+#departure_place_flight_wrapper .active, #arrival_place_flight_wrapper .active{
+    background-color:#c6d7f7;   
+    border-top: 1px solid #66afe9; 
+    border-bottom: 1px solid #66afe9; 
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .1);
+          box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .1);
+}
+
+.direct-plane{
+    transform: rotate(90deg);
+}
+
+.return-plane{
+    transform: rotate(-90deg);
+}
+
+.flight-cart{
+    opacity: 1;
+    height: 150px;
+    position: relative; 
+    background-color: white;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+.flight-cart hr{
+    text-align: center;
+    margin: 1.5%;
+    position: absolute;
+    left:33.33333333%;
+    right:0;
+    top:41%;
+    bottom:0;
+    border-top: 1px dashed #ccc;
+}
+
+.ticket-details{
+    max-width: 100%;
+    border-radius: 4px 0px 0px 4px;
+    border-right: 1px solid #ccc;
+    position: absolute; 
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+}
+
+.buy-ticket-btn{
+    font-family: "Source Sans Pro";
+    position: absolute;
+    top: 55%;
+    left: 18%;
+    width: 70%;
+    border-radius: 5px;
+    font-weight: 200;
+    font-size: 18px;
+    color: white;
+    background: linear-gradient(to bottom, #3494db, #2595db);
+}
+
+.buy-ticket-btn:hover{
+    color: white;
+    background: linear-gradient(to bottom, #39bcdb, #25bcdb);
+}
+
+.direct-flight{
+    position: absolute;
+    left:33.33333333%;
+    right:0;
+    top:0;
+    bottom:0;
+    height: 50%;
+}
+
+.return-flight{
+    position: absolute;
+    left:33.33333333%;
+    right:0;
+    top:50%;
+    bottom:0;
+    height: 50%;
+}
+
+.tickets-left{
+    margin-top: 125px;
+    text-align: center;
+    font-family: "Bree+Serif";
+    font-weight: 200;
+    font-size: 14px;
+    color: #555;
+}

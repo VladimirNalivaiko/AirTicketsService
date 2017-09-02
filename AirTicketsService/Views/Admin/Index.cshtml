@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li id="plane-link" onclick="flightClick(event)">
+                    <a>Полёты</a>
+                </li>
+                <li id="ticket-link" onclick="ticketClick(event)">
+                    <a>Билеты</a>
+                </li>
+                <li id="user-link" onclick="userClick(event)">
+                    <a>Пользователи</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">  
+            <table class="table table-responsive table-hover" id="flights-table">
+                <tr class="admin-panel" id="flights-table-header">
+                    <th>ID</th>
+                    <th>Откуда</th>
+                    <th>Куда</th>
+                    <th>Цена</th>
+                    <th>Отправление</th>
+                    <th>Остаток мест</th>
+                </tr>
+            </table>
+            <table class="table table-responsive table-hover" id="tickets-table">
+                <tr class="admin-panel" id="tickets-table-header">
+                    <th>ID</th>
+                    <th>Откуда</th>
+                    <th>Куда</th>
+                    <th>Отправление</th>
+                    <th>Владелец</th>
+                    <th>Номер паспорта</th>
+                    <th>Мобильный номер</th>
+                    <th>Email</th>
+                    <th>№ места</th>
+                </tr>
+            </table>    
+            <table class="table table-responsive table-hover" id="users-table">
+                <tr class="admin-panel" id="users-table-header">
+                    <th>ID</th>
+                    <th>Email</th>
+                    <th>Роли</th>
+                </tr>
+            </table> 
+            <div class="panel-footer navbar-fixed-bottom col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
+                <a href=@Url.Action("Create", "Flight", new { returnUrl = Request.Url.PathAndQuery })
+                   class="btn btn-default navbar-btn admin-panel" id="create-flight-admin-btn">
+                    Добавить полёт
+                </a>
+            </div>       
+        </div>
+    </div>
+</div>

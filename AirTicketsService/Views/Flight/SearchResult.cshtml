@@ -1,0 +1,36 @@
+﻿@model AirTicketsService.Models.SearchFlightViewModel
+
+@{
+    ViewBag.Title = "SearchResult";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+    @foreach (var directFlight in Model.DirectFlight)
+    {
+        foreach (var returnFlight in Model.ReturnFlight)
+        {
+            <div class="col-lg-10 col-lg-offset-2 flight-cart">
+                <div class="col-lg-4 ticket-details">
+                    <div class="tickets-left center-block">
+                        Осталось 
+                        @(directFlight.NumOfSeats > returnFlight.NumOfSeats ?
+                            directFlight.NumOfSeats : returnFlight.NumOfSeats)
+                        билетов
+                    </div>
+                    <div class="btn buy-ticket-btn">
+                        Купить за @(directFlight.Price + returnFlight.Price)$ 
+                    </div>
+                </div>
+                <div class="col-lg-8 direct-flight">
+                    @directFlight.DepartureTime
+                </div>
+                <hr>
+                <div class="col-lg-8 return-flight">
+                    @returnFlight.DepartureDate.ToString("{HH/mm}")                    
+                </div>
+            </div>
+        }
+    }
+</div>

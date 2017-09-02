@@ -1,0 +1,58 @@
+﻿@model AirTicketsService.Models.FlightModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>FlightModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PlaneID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PlaneID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeparturePlace)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeparturePlace)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ArrivalPlace)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ArrivalPlace)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DepartureDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DepartureDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
