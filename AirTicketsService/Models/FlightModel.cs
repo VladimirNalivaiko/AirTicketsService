@@ -27,18 +27,14 @@ namespace AirTicketsService.Models
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         [DataType(DataType.Date)]
         public DateTime DepartureDate { get; set; }
-
-        [Required(ErrorMessage = "Введите время прибытия")]
-        [Display(Name = "Время прибытия")]
-        [DataType(DataType.Time)]
-        public TimeSpan DepartureTime { get; set; }
-
+        
         [Required(ErrorMessage = "Введите время полета")]
         [Display(Name = "Время полета")]
         [DataType(DataType.Time)]
-        public TimeSpan FlightTime { get; set; }
+        public TimeSpan TimeOfFlight { get; set; }
 
-        [Required(ErrorMessage = "Введите количество мест")]
+        [Required(ErrorMessage = "Введите количество мест"), 
+            Range(1, 300, ErrorMessage = "Введенное значение должно быть 300 и больше 0")]
         [Display(Name = "Количество мест")]
         public int NumOfSeats { get; set; }   
     }

@@ -74,7 +74,7 @@ namespace AirTicketsService.Controllers
                 flight.DepartureDate = flightModel.DepartureDate;
                 flight.DepartureDate = flight.DepartureDate.AddHours(flightModel.DepartureTime.Hours);
                 flight.DepartureDate = flight.DepartureDate.AddMinutes(flightModel.DepartureTime.Minutes);
-                flight.DepartureTime = flightModel.DepartureTime;
+                flight.TimeOfFlight = flightModel.TimeOfFlight;
                 flight.Price = flightModel.Price;
                 flight.NumOfSeats = flightModel.NumOfSeats;
 
@@ -112,7 +112,7 @@ namespace AirTicketsService.Controllers
             flight.ArrivalPlace = flightModel.ArrivalPlace;
             flight.DeparturePlace = flightModel.DeparturePlace;
             flight.DepartureDate = flightModel.DepartureDate;
-            flight.DepartureTime = flightModel.DepartureTime;
+            flight.TimeOfFlight = flightModel.TimeOfFlight;
             flight.Price = flightModel.Price;
             flight.NumOfSeats = flightModel.NumOfSeats;
 
@@ -153,7 +153,7 @@ namespace AirTicketsService.Controllers
                 flight.ArrivalPlace = flightModel.ArrivalPlace;
                 flight.DeparturePlace = flightModel.DeparturePlace;
                 flight.DepartureDate = flightModel.DepartureDate;
-                flight.DepartureTime = flightModel.DepartureTime;
+                flight.TimeOfFlight = flightModel.TimeOfFlight;
                 flight.Price = flightModel.Price;
                 flight.NumOfSeats = flightModel.NumOfSeats;
 
@@ -202,8 +202,6 @@ namespace AirTicketsService.Controllers
                 model.ArrivalPlace = item.ArrivalPlace;
                 model.Price = item.Price;
                 model.DepartureDate = item.DepartureDate;
-                model.DepartureDate = model.DepartureDate.AddHours(item.DepartureTime.Hours);
-                model.DepartureDate = model.DepartureDate.AddMinutes(item.DepartureTime.Minutes);
                 model.NumOfFreeSeats = FlightService.GetNumOfFreeSeats(item.ID);
                 list.Add(model);
             }

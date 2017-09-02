@@ -263,6 +263,10 @@
     <Compile Include="Migrations\201708191149167_Added_Cities_in_Seed.Designer.cs">
       <DependentUpon>201708191149167_Added_Cities_in_Seed.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709021111370_Updated_Flight_and_Ticket_Models.cs" />
+    <Compile Include="Migrations\201709021111370_Updated_Flight_and_Ticket_Models.Designer.cs">
+      <DependentUpon>201709021111370_Updated_Flight_and_Ticket_Models.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CityModel.cs" />
@@ -408,6 +412,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708191149167_Added_Cities_in_Seed.resx">
       <DependentUpon>201708191149167_Added_Cities_in_Seed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709021111370_Updated_Flight_and_Ticket_Models.resx">
+      <DependentUpon>201709021111370_Updated_Flight_and_Ticket_Models.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -66,8 +66,8 @@ var ticketClick = function (event) {
                     if (!ticketClicked) {
                         for (var i = 0; i < len; i++) {
                             if (data[i].ID && data[i].DeparturePlace && data[i].ArrivalPlace
-                                && data[i].DepartureDate && data[i].DepartureTime && data[i].Name
-                                && data[i].SurName && data[i].PassportNumber && data[i].PhoneNumber
+                                && data[i].DepartureDate && data[i].Name && data[i].SurName
+                                && data[i].PassportNumber && data[i].PhoneNumber
                                 && data[i].Email && data[i].SeatNumber) {
                                 var re = /-?\d+/;
                                 var m = re.exec(data[i].DepartureDate);

@@ -140,14 +140,11 @@ namespace AirTicketsService.Controllers
             foreach(var item in ticketsList)
             {
                 TicketAdminViewModel model = new TicketAdminViewModel();
-                var time = flightList.FirstOrDefault(x => x.ID == item.FlightID).DepartureTime;
 
                 model.ID = item.ID;
                 model.ArrivalPlace = flightList.FirstOrDefault(x => x.ID == item.FlightID).ArrivalPlace;
                 model.DeparturePlace = flightList.FirstOrDefault(x => x.ID == item.FlightID).DeparturePlace;
-                model.DepartureDate = flightList.FirstOrDefault(x => x.ID == item.FlightID).DepartureDate;
-                model.DepartureDate = model.DepartureDate.AddHours(time.Hours);
-                model.DepartureDate = model.DepartureDate.AddMinutes(time.Minutes);                
+                model.DepartureDate = flightList.FirstOrDefault(x => x.ID == item.FlightID).DepartureDate;           
                 model.Name = item.Name;
                 model.SurName = item.SurName;
                 model.PassportNumber = item.PassportNumber;
