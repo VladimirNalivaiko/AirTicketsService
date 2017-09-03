@@ -56,17 +56,9 @@ textarea {
           box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .1);
 }
 
-.direct-plane{
-    transform: rotate(90deg);
-}
-
-.return-plane{
-    transform: rotate(-90deg);
-}
-
 .flight-cart{
     opacity: 1;
-    height: 150px;
+    height: 170px;
     position: relative; 
     background-color: white;
     border-radius: 10px;
@@ -132,10 +124,67 @@ textarea {
 }
 
 .tickets-left{
-    margin-top: 125px;
+    margin-top: 135px;
     text-align: center;
     font-family: "Bree+Serif";
     font-weight: 200;
     font-size: 14px;
     color: #555;
+}
+
+.dir-fl-dep-info{
+    height: 100%;
+    font-family: "Lato";
+}
+
+.route-time{
+    margin-left: -2px;
+    margin-top: 5px;
+    font-size: 25px;
+}
+
+.route-city{ 
+    position: absolute;
+    top: 50%; 
+    font-weight: 600;
+}
+
+.route-date{
+    position: absolute;
+    top: 70%; 
+    font-size: 11px;
+}
+
+.fl-illustration{
+    height: 100%;
+}
+
+.dir-fl-dep-circle{
+    position: absolute;
+    margin-left: -10px;
+    top: 60%;
+}
+
+.route-path-line{
+    display: block;
+    height: 1px;
+    position: absolute;
+    top: 67%;
+    background-color:black;
+}
+
+.dir-fl-arr-circle{
+    position: absolute;
+    top: 60%;
+}
+
+.dir-fl-dep-plane{
+    position: absolute;
+    top: 40%;
+}
+
+.dir-fl-arr-plane{
+    position: absolute;  
+    margin-left: 78%;
+    top: 40%;
 }

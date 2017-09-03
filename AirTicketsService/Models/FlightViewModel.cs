@@ -1,4 +1,5 @@
 ﻿using AirTicketsService.Models;
+using AirTicketsService.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -34,6 +35,13 @@ namespace AirTicketsService.Models
         [Display(Name = "Время прибытия")]
         [DataType(DataType.Time)]
         public TimeSpan DepartureTime { get; set; }
+        
+        [DataType(DataType.Date)]
+        public DateTime ArrivalDate { get; set; }
+
+        public string DepartureDateInfo { get; set; }
+
+        public string ArrivalDateInfo { get; set; }
 
         [Required(ErrorMessage = "Введите время полета")]
         [Display(Name = "Время полета")]
@@ -46,5 +54,30 @@ namespace AirTicketsService.Models
         public int NumOfSeats { get; set; }  
 
         public string ReturnUrl { get; set; }
+
+        public FlightViewModel() { }
+
+        public FlightViewModel(FlightModel flight)
+        {
+            this.ID = flight.ID;
+            this.ArrivalPlace = flight.ArrivalPlace;
+            this.DeparturePlace = flight.DeparturePlace;
+            this.DepartureDate = flight.DepartureDate;
+            this.DepartureTime = this.DepartureTime.Add(new TimeSpan(this.DepartureDate.Hour,
+                this.DepartureDate.Minute, this.DepartureDate.Second));
+            this.TimeOfFlight = flight.TimeOfFlight;
+            this.ArrivalDate = this.DepartureDate.AddHours(this.TimeOfFlight.Hours).AddMinutes(this.TimeOfFlight.Minutes);
+
+            this.DepartureDateInfo += DepartureDate.Day.ToString() + " ";
+            this.DepartureDateInfo += FlightService.GetMounth()[DepartureDate.Month] + " ";
+            this.DepartureDateInfo += DepartureDate.Year.ToString();
+
+            this.ArrivalDateInfo += ArrivalDate.Day.ToString() + " ";
+            this.ArrivalDateInfo += FlightService.GetMounth()[ArrivalDate.Month] + " ";
+            this.ArrivalDateInfo += ArrivalDate.Year.ToString();
+
+            this.Price = flight.Price;
+            this.NumOfSeats = flight.NumOfSeats;
+        }
     }
 }

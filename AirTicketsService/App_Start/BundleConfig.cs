@@ -33,10 +33,12 @@ namespace AirTicketsService
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/font-awesome.css",
                       "~/Content/Site.css"));
 
             bundles.Add(new StyleBundle("~/Content/Admin/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/font-awesome.css",
                       "~/Content/AdminPanel.css"));
         }
     }

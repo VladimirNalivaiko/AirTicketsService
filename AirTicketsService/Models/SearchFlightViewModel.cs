@@ -7,8 +7,10 @@ namespace AirTicketsService.Models
 {
     public class SearchFlightViewModel
     {
-        public List<FlightModel> DirectFlight { get; set; }
+        public List<FlightViewModel> DirectFlight { get; set; }
 
-        public List<FlightModel> ReturnFlight { get; set; }
+        public List<FlightViewModel> ReturnFlight { get; set; }
+
+        public string[] Mounth { get; set; }
     }
 }

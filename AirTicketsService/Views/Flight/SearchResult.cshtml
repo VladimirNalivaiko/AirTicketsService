@@ -14,21 +14,77 @@
             <div class="col-lg-8 col-lg-offset-2 flight-cart">
                 <div class="col-lg-4 ticket-details">
                     <div class="tickets-left center-block">
-                        Осталось 
+                        Осталось
                         @(directFlight.NumOfSeats > returnFlight.NumOfSeats ?
                             directFlight.NumOfSeats : returnFlight.NumOfSeats)
                         билетов
                     </div>
                     <div class="btn buy-ticket-btn">
-                        Купить за @(directFlight.Price + returnFlight.Price)$ 
+                        Купить за @(directFlight.Price + returnFlight.Price)$
                     </div>
                 </div>
                 <div class="col-lg-8 direct-flight">
-                    @directFlight.DepartureDate.ToString("HH:mm") 
+                    <div class="col-lg-3 dir-fl-dep-info">
+                        <div class="route-time">
+                            @directFlight.DepartureDate.ToString("HH:mm")
+                        </div>
+                        <div class="route-city">
+                            @directFlight.DeparturePlace
+                        </div>
+                        <div class="route-date">
+                            @directFlight.DepartureDateInfo
+                        </div>
+                    </div>
+                    <div class="col-lg-6 fl-illustration">
+                        <i class="fa fa-plane dir-fl-dep-plane" aria-hidden="true"></i>
+                        <i class="fa fa-circle-o dir-fl-dep-circle" aria-hidden="true"></i>
+                        <div class="route-path-line col-lg-10"></div>
+                        <i class="fa fa-plane fa-rotate-90 dir-fl-arr-plane" aria-hidden="true"></i>
+                        <i class="fa fa-circle-o dir-fl-arr-circle col-lg-offset-10" aria-hidden="true"></i>
+                    </div>
+                    <div class="col-lg-3 dir-fl-dep-info">
+                        <div class="route-time">
+                            @directFlight.ArrivalDate.ToString("HH:mm")
+                        </div>
+                        <div class="route-city">
+                            @returnFlight.DeparturePlace
+                        </div>
+                        <div class="route-date">
+                            @directFlight.ArrivalDateInfo
+                        </div>
+                    </div>
                 </div>
                 <hr>
                 <div class="col-lg-8 return-flight">
-                    @returnFlight.DepartureDate.ToString("HH:mm")                    
+                    <div class="col-lg-3 dir-fl-dep-info">
+                        <div class="route-time">
+                            @returnFlight.DepartureDate.ToString("HH:mm")
+                        </div>
+                        <div class="route-city">
+                            @returnFlight.DeparturePlace
+                        </div>
+                        <div class="route-date">
+                            @returnFlight.DepartureDateInfo
+                        </div>
+                    </div>
+                    <div class="col-lg-6 fl-illustration">
+                        <i class="fa fa-plane dir-fl-dep-plane" aria-hidden="true"></i>
+                        <i class="fa fa-circle-o dir-fl-dep-circle" aria-hidden="true"></i>
+                        <div class="route-path-line col-lg-10"></div>
+                        <i class="fa fa-plane fa-rotate-90 dir-fl-arr-plane" aria-hidden="true"></i>
+                        <i class="fa fa-circle-o dir-fl-arr-circle col-lg-offset-10" aria-hidden="true"></i>
+                    </div>
+                    <div class="col-lg-3 dir-fl-dep-info">
+                        <div class="route-time">
+                            @returnFlight.ArrivalDate.ToString("HH:mm")
+                        </div>
+                        <div class="route-city">
+                            @directFlight.DeparturePlace
+                        </div>
+                        <div class="route-date">
+                            @returnFlight.ArrivalDateInfo
+                        </div>
+                    </div>
                 </div>
             </div>
         }

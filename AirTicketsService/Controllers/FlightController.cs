@@ -27,6 +27,7 @@ namespace AirTicketsService.Controllers
                 SearchFlightViewModel model = new SearchFlightViewModel();
                 model.DirectFlight = FlightService.GetFlights(flight.DeparturePlace, flight.ArrivalPlace, flight.DepartureDate);
                 model.ReturnFlight = FlightService.GetFlights(flight.ArrivalPlace, flight.DeparturePlace, flight.ArrivalDate);
+                model.Mounth = FlightService.GetMounth();
                 return View("SearchResult", model);
             }
         }
@@ -62,7 +63,7 @@ namespace AirTicketsService.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include =
-            "ID,CurrentPlaneName,DeparturePlace,ArrivalPlace,Price,DepartureDate,DepartureTime,NumOfSeats,ReturnUrl")] FlightViewModel flightModel)
+            "ID,CurrentPlaneName,DeparturePlace,ArrivalPlace,Price,DepartureDate,DepartureTime,TimeOfFlight,NumOfSeats,ReturnUrl")] FlightViewModel flightModel)
         {
             if (ModelState.IsValid)
             {

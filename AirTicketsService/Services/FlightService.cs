@@ -9,6 +9,8 @@ namespace AirTicketsService.Services
     public static class FlightService
     {
         private static ApplicationDbContext db = new ApplicationDbContext();
+        private static string[] Mounth_RUS = { "января", "февраля", "марта", "апреля", "мая", "июня",
+            "июля", "августа", "сентября", "октября", "ноября", "декабря" };
 
         public static int GetNumOfSeats(int flightID)
         {
@@ -30,19 +32,24 @@ namespace AirTicketsService.Services
             return db.FlightModels.ToList();
         }
 
-        public static List<FlightModel> GetFlights(string departurePlace, string arrivalPlace, DateTime? departureDate)
+        public static List<FlightViewModel> GetFlights(string departurePlace, string arrivalPlace, DateTime? departureDate)
         {
-            List<FlightModel> list = new List<FlightModel>();
+            List<FlightViewModel> list = new List<FlightViewModel>();
             foreach(var item in db.FlightModels)
             {
              if(item.DeparturePlace == departurePlace && item.ArrivalPlace == arrivalPlace
                     && new DateTime(item.DepartureDate.Year, item.DepartureDate.Month, item.DepartureDate.Day) 
                     == departureDate)
                 {
-                    list.Add(item);
+                    list.Add(new Models.FlightViewModel(item));
                 }
             }
             return list;
+        }
+
+        public static string[] GetMounth()
+        {
+            return Mounth_RUS;
         }
     }
 }
