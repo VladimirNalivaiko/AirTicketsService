@@ -32,9 +32,17 @@ namespace AirTicketsService.Services
 
         public static List<FlightModel> GetFlights(string departurePlace, string arrivalPlace, DateTime? departureDate)
         {
-            return db.FlightModels.Where(x => x.DeparturePlace == departurePlace
-            && x.ArrivalPlace == arrivalPlace
-            && x.DepartureDate == departureDate).ToList();
+            List<FlightModel> list = new List<FlightModel>();
+            foreach(var item in db.FlightModels)
+            {
+             if(item.DeparturePlace == departurePlace && item.ArrivalPlace == arrivalPlace
+                    && new DateTime(item.DepartureDate.Year, item.DepartureDate.Month, item.DepartureDate.Day) 
+                    == departureDate)
+                {
+                    list.Add(item);
+                }
+            }
+            return list;
         }
     }
 }

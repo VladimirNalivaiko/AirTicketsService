@@ -14,7 +14,7 @@ namespace AirTicketsService.Models
         [Display(Name = "Город назначения")]
         public string DeparturePlace { get; set; }
 
-        [Required(ErrorMessage = "Введите город прибытия")]
+        [Required(ErrorMessage = "Введите город вылета")]
         [Display(Name = "Город прибытия")]
         public string ArrivalPlace { get; set; }
 
@@ -22,7 +22,7 @@ namespace AirTicketsService.Models
         [Display(Name = "Стоймость")]
         public double Price { get; set; }
         
-        [Required(ErrorMessage = "Введите дату прибытия")]
+        [Required(ErrorMessage = "Введите дату вылета")]
         [Display(Name = "Дата прибытия")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         [DataType(DataType.Date)]

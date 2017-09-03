@@ -24,13 +24,13 @@ namespace AirTicketsService.Models
         [Display(Name = "Стоймость")]
         public double Price { get; set; }
         
-        [Required(ErrorMessage = "Введите дату прибытия")]
+        [Required(ErrorMessage = "Введите дату вылета")]
         [Display(Name = "Дата прибытия")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         [DataType(DataType.Date)]
         public DateTime DepartureDate { get; set; }
 
-        [Required(ErrorMessage = "Введите время прибытия")]
+        [Required(ErrorMessage = "Введите время вылета")]
         [Display(Name = "Время прибытия")]
         [DataType(DataType.Time)]
         public TimeSpan DepartureTime { get; set; }
