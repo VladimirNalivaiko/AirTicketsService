@@ -189,3 +189,9 @@ var arrival_key_activate = function (n) {
         $("#arrival_place_flight").val(arr_input_initial_value);
     }
 }
+
+var searchBegin = function (event) {
+    $("#search-begin-btn").fadeOut(100, function () {
+        $("#search-grp").fadeIn(100);
+    });
+}

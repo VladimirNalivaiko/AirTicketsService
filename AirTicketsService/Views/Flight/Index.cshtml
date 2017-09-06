@@ -36,6 +36,9 @@
             <input type="submit" />
     }*@
 
+<div id="bg">
+</div>
+
 @Html.ActionLink("Добавить полет","Create", "Flight")
 
 
@@ -48,7 +51,7 @@
     <h3 class="main-text col-lg-8 col-lg-offset-2">
         Лучший способ купить авиабилеты дешево
     </h3>
-    <div class="search-group col-lg-10 col-lg-offset-1">
+    <div class="search-group col-lg-10 col-lg-offset-1" id="search-grp">
         <div class="form-horizontal">
             <div class="">
                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
@@ -108,7 +111,7 @@
 
         </div>
     </div>
-    <div class="btn search-btn col-lg-2 col-lg-offset-5">
+    <div class="btn search-btn col-lg-2 col-lg-offset-5" id="search-begin-btn" onclick="searchBegin(event)">
         Поиск
     </div>
 
