@@ -41,7 +41,7 @@ namespace AirTicketsService.Services
                     && new DateTime(item.DepartureDate.Year, item.DepartureDate.Month, item.DepartureDate.Day) 
                     == departureDate)
                 {
-                    list.Add(new Models.FlightViewModel(item));
+                    list.Add(new FlightViewModel(item));
                 }
             }
             return list;

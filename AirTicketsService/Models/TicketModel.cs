@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AirTicketsService.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace AirTicketsService.Models
     public class TicketModel
     {
         public int ID { get; set; }
-        
+
         public int FlightID { get; set; }
 
         public int SeatID { get; set; }
@@ -34,5 +35,18 @@ namespace AirTicketsService.Models
         [Display(Name = "Email")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
+
+        public TicketModel() { }
+
+        public TicketModel(OrderViewModel order, int flightID, int seatNumber)
+        {
+            this.FlightID = flightID;
+            this.SeatID = SeatService.GetSeatByNumberAndFlightID(seatNumber, flightID).ID;
+            this.Name = order.Name;
+            this.SurName = order.SurName;
+            this.PassportNumber = order.PassportNumber;
+            this.PhoneNumber = order.PhoneNumber;
+            this.Email = order.Email;
+        }
     }
 }

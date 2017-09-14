@@ -1,4 +1,6 @@
-﻿@media (min-width: 768px) {
+﻿@import url(https://fonts.googleapis.com/css?family=Lato|Source+Sans+Pro|Bree+Serif);
+
+@media (min-width: 768px) {
   .sidebar {
     position: fixed;
     top: 31px;
@@ -54,4 +56,11 @@ body {
     padding-top: 50px;
     padding-bottom: 20px;
     background-color: white;
+}
+
+.no-data{
+    text-align: center;
+    font-family: "Lato";
+    font-size: 30px;
+    margin-top: 25%;
 }

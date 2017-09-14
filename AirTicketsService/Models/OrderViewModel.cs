@@ -10,12 +10,22 @@ namespace AirTicketsService.Models
     public class OrderViewModel
     {
         public int ID { get; set; }
-        
-        public int FlightID { get; set; }
 
-        public int SeatNumber { get; set; }
+        public int DirectFlightID { get; set; }
 
-        public List<SelectListItem> FreeSeatList { get; set; }
+        public int ReturnFlightID { get; set; }
+
+        [Required(ErrorMessage = "Введите номер сиденья первого полета")]
+        [Display(Name = "Номер сиденья")]
+        public int DirectSeatNumber { get; set; }
+
+        [Required(ErrorMessage = "Введите номер сиденья второго полета")]
+        [Display(Name = "Номер сиденья")]
+        public int ReturnSeatNumber { get; set; }
+
+        public List<SelectListItem> DirectFreeSeatList { get; set; }
+
+        public List<SelectListItem> ReturnFreeSeatList { get; set; }
 
         [Required(ErrorMessage = "Введите Ваше имя")]
         [Display(Name = "Имя")]

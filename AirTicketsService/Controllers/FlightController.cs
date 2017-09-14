@@ -50,7 +50,7 @@ namespace AirTicketsService.Controllers
         // GET: FlightModels/Create
         public ActionResult Create(string returnUrl = "")
         {
-            FlightViewModel flight = new FlightViewModel();
+            DoubleFlightViewModel flight = new DoubleFlightViewModel();
             
             flight.ReturnUrl = returnUrl != "" ? returnUrl : "";
 
@@ -62,41 +62,28 @@ namespace AirTicketsService.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include =
-            "ID,CurrentPlaneName,DeparturePlace,ArrivalPlace,Price,DepartureDate,DepartureTime,TimeOfFlight,NumOfSeats,ReturnUrl")] FlightViewModel flightModel)
+        public ActionResult Create(DoubleFlightViewModel flight)
         {
             if (ModelState.IsValid)
             {
-                FlightModel flight = new FlightModel();
+                FlightModel directFlight = new FlightModel(flight, flight.DirectDepartureDate, 
+                    flight.DirectDepartureTime, flight.DirectTimeOfFlight, flight.DirectPrice, flight.DirectNumOfSeats);
+                FlightModel returnFlight = new FlightModel(flight, flight.ReturnDepartureDate, 
+                    flight.ReturnDepartureTime, flight.ReturnTimeOfFlight, flight.ReturnPrice, flight.ReturnNumOfSeats);
 
-                flight.ID = flightModel.ID;
-                flight.ArrivalPlace = flightModel.ArrivalPlace;
-                flight.DeparturePlace = flightModel.DeparturePlace;
-                flight.DepartureDate = flightModel.DepartureDate;
-                flight.DepartureDate = flight.DepartureDate.AddHours(flightModel.DepartureTime.Hours);
-                flight.DepartureDate = flight.DepartureDate.AddMinutes(flightModel.DepartureTime.Minutes);
-                flight.TimeOfFlight = flightModel.TimeOfFlight;
-                flight.Price = flightModel.Price;
-                flight.NumOfSeats = flightModel.NumOfSeats;
-
-                db.FlightModels.Add(flight);
+                db.FlightModels.Add(directFlight);
+                db.FlightModels.Add(returnFlight);
                 db.SaveChanges();
 
-                for (int i = 0; i < flight.NumOfSeats; i++)
-                {
-                    SeatModel seat = new SeatModel();
-                    seat.FlightID = flight.ID;
-                    seat.SeatNumber = i;
-                    seat.isFree = true;
-                    db.SeatModels.Add(seat);
-                }
+                SeatService.AddSeats(directFlight);
+                SeatService.AddSeats(returnFlight);
 
-                db.SaveChanges();
-                
-                return string.IsNullOrEmpty(flightModel.ReturnUrl) ? RedirectToAction("Index") : RedirectToAction("", flightModel.ReturnUrl.Substring(1));
+                db.SaveChanges();                
+                return string.IsNullOrEmpty(flight.ReturnUrl) ? RedirectToAction("Index") :
+                    RedirectToAction("", flight.ReturnUrl.Substring(1));
             }
 
-            return View(flightModel);
+            return View(flight);
         }
 
         // GET: FlightModels/Edit/5

@@ -38,9 +38,9 @@ namespace AirTicketsService.Services
             return db.SeatModels.FirstOrDefault(x => x.SeatNumber == seatNumber);
         }
 
-        public static int GetSeatIDByNumber(int seatNumber)
+        public static SeatModel GetSeatByNumberAndFlightID(int seatNumber, int flightID)
         {
-            return db.SeatModels.FirstOrDefault(x => x.SeatNumber == seatNumber).ID;
+            return db.SeatModels.Where(x => x.FlightID == flightID).FirstOrDefault(x => x.SeatNumber == seatNumber);
         }
 
         public static int GetSeatNumberByID(int id)
@@ -48,9 +48,9 @@ namespace AirTicketsService.Services
             return db.SeatModels.Find(id).SeatNumber;
         }
 
-        public static void UpdateSeatState(int seatNumber)
+        public static void UpdateSeatState(int seatNumber, int flightID)
         {
-            SeatModel seat = GetSeatByNumber(seatNumber);
+            SeatModel seat = GetSeatByNumberAndFlightID(seatNumber, flightID);
             seat.isFree = !seat.isFree;
             db.Entry(seat).State = EntityState.Modified;
             db.SaveChanges();
@@ -61,6 +61,18 @@ namespace AirTicketsService.Services
         {
             db.Entry(seat).State = EntityState.Modified;
             db.SaveChanges();
+        }
+
+        public static void AddSeats(FlightModel flight)
+        {
+            for (int i = 0; i < flight.NumOfSeats; i++)
+            {
+                SeatModel seat = new SeatModel();
+                seat.FlightID = flight.ID;
+                seat.SeatNumber = i;
+                seat.isFree = true;
+                db.SeatModels.Add(seat);
+            }
         }
     }
 }

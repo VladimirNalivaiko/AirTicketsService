@@ -37,6 +37,20 @@ namespace AirTicketsService.Models
             Range(1, 300, ErrorMessage = "Введенное значение должно быть 300 и больше 0")]
         [Display(Name = "Количество мест")]
         public int NumOfSeats { get; set; }   
-    }
 
+        public FlightModel() { }
+
+        public FlightModel(DoubleFlightViewModel flight, DateTime departureDate, TimeSpan departureTime,
+                            TimeSpan timeOfFlight, double price, int numOfSeats)
+        {
+            this.ArrivalPlace = flight.ArrivalPlace;
+            this.DeparturePlace = flight.DeparturePlace;
+            this.DepartureDate = departureDate;
+            this.DepartureDate = departureDate.AddHours(departureTime.Hours);
+            this.DepartureDate = departureDate.AddMinutes(departureTime.Minutes);
+            this.TimeOfFlight = timeOfFlight;
+            this.Price = price;
+            this.NumOfSeats = numOfSeats;
+        }
+    }
 }

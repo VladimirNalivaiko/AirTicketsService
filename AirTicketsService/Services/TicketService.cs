@@ -12,7 +12,8 @@ namespace AirTicketsService.Services
 
         public static List<TicketModel> GetTicketsList()
         {
-            return db.TicketModels.ToList();
+            var list =  db.TicketModels.ToList();
+            return list;
         }
     }
 }

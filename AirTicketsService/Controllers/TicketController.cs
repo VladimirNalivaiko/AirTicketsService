@@ -37,11 +37,13 @@ namespace AirTicketsService.Controllers
         }
 
         // GET: Ticket/Create
-        public ActionResult Create(int flightID)
+        public ActionResult Create(int directFlightID, int returnFlightID)
         {
             OrderViewModel order = new OrderViewModel();
-            order.FlightID = flightID;
-            order.FreeSeatList = SeatService.GetFreeSeatsList(flightID);
+            order.DirectFlightID = directFlightID;
+            order.ReturnFlightID = returnFlightID;
+            order.DirectFreeSeatList = SeatService.GetFreeSeatsList(directFlightID);
+            order.ReturnFreeSeatList = SeatService.GetFreeSeatsList(returnFlightID);
             return View(order);
         }
 
@@ -50,24 +52,19 @@ namespace AirTicketsService.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,FlightID,SeatNumber,Name,SurName,PassportNumber,PhoneNumber,Email")] OrderViewModel order)
+        public ActionResult Create([Bind(Include =
+            "ID,DirectFlightID,ReturnFlightID,DirectSeatNumber,ReturnSeatNumber,Name,SurName,PassportNumber,PhoneNumber,Email")] OrderViewModel order)
         {
-            if (ModelState.IsValid)//8
+            if (ModelState.IsValid)
             {
-                SeatService.UpdateSeatState(order.SeatNumber);
+                SeatService.UpdateSeatState(order.DirectSeatNumber, order.DirectFlightID);
+                SeatService.UpdateSeatState(order.ReturnSeatNumber, order.ReturnFlightID);
 
-                TicketModel ticketModel = new TicketModel();
-                
-                ticketModel.ID = order.ID;
-                ticketModel.FlightID = order.FlightID;
-                ticketModel.SeatID = SeatService.GetSeatIDByNumber(order.SeatNumber);
-                ticketModel.Name = order.Name;
-                ticketModel.SurName = order.SurName;
-                ticketModel.PassportNumber = order.PassportNumber;
-                ticketModel.PhoneNumber = order.PhoneNumber;
-                ticketModel.Email = order.Email;
+                TicketModel directTicket = new TicketModel(order, order.DirectFlightID, order.DirectSeatNumber);
+                TicketModel returnTicket = new TicketModel(order, order.ReturnFlightID, order.ReturnSeatNumber);
 
-                db.TicketModels.Add(ticketModel);
+                db.TicketModels.Add(directTicket);
+                db.TicketModels.Add(returnTicket);
                 db.SaveChanges();
                 return RedirectToAction("Index", "Flight");
             }
@@ -131,6 +128,7 @@ namespace AirTicketsService.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
 
         public ActionResult GetTicketsToAdminJson()
         {

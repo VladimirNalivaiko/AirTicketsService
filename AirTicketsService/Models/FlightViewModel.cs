@@ -78,6 +78,6 @@ namespace AirTicketsService.Models
 
             this.Price = flight.Price;
             this.NumOfSeats = flight.NumOfSeats;
-        }
+        }        
     }
 }

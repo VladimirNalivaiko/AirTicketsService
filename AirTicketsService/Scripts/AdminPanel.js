@@ -32,11 +32,7 @@ var flightClick = function (event) {
                     }
                     if (txt != "" || flightClicked) {
 
-                        $("#tickets-table").hide();
-                        $("#users-table").hide();
-
-                        $("#users-table-header").hide();
-                        $("#tickets-table-header").hide();
+                        forFlightHide();
 
                         if (!flightClicked) {
                             $("#flights-table").append(txt);
@@ -47,10 +43,26 @@ var flightClick = function (event) {
                         $("#create-flight-admin-btn").show();
                     }
                 }
+                else {
+                    $("#no-flights").show();
+
+                    forFlightHide();
+                }
             }
         }
     });
 }
+
+var forFlightHide = function () {
+    $("#tickets-table").hide();
+    $("#users-table").hide();
+
+    $("#users-table-header").hide();
+    $("#tickets-table-header").hide();
+
+    $("#no-tickets").hide();
+    $("#no-users").hide();
+};
 
 var ticketClick = function (event) {
     $.ajax({
@@ -58,6 +70,7 @@ var ticketClick = function (event) {
         url: '/Ticket/GetTicketsToAdminJson',
         dataType: "json",
         success: function (data) {
+            console.log(data);
             if (data) {
                 var len = data.length;
                 var txt = "";
@@ -88,12 +101,7 @@ var ticketClick = function (event) {
                         }
                     }
                     if (txt != "" || ticketClicked) {
-                        $("#flights-table").hide();
-                        $("#users-table").hide();
-
-                        $("#flights-table-header").hide();
-                        $("#create-flight-admin-btn").hide();
-                        $("#users-table-header").hide();
+                        forTicketHide();
 
                         if (!ticketClicked) {
                             $("#tickets-table").append(txt);
@@ -103,10 +111,27 @@ var ticketClick = function (event) {
                         $("#tickets-table").show();
                     }
                 }
+                else {
+                    $("#no-tickets").show();
+
+                    forTicketHide();    
+                }
             }
         }
     });
 }
+
+var forTicketHide = function () {
+    $("#flights-table").hide();
+    $("#users-table").hide();
+
+    $("#flights-table-header").hide();
+    $("#create-flight-admin-btn").hide();
+    $("#users-table-header").hide();
+
+    $("#no-flights").hide();
+    $("#no-users").hide();
+};
 
 var userClick = function (event) {
     $.ajax({
@@ -129,26 +154,38 @@ var userClick = function (event) {
                         }
                     }
                     if (txt != "" || userClicked) {
-                        console.log(txt);
-                        $("#flights-table").hide();
-                        $("#tickets-table").hide();
-
-                        $("#flights-table-header").hide();
-                        $("#create-flight-admin-btn").hide();
-                        $("#tickets-table-header").hide();
+                        forUserHide();
 
                         if (!userClicked) {
                             $("#users-table").append(txt);
                             userClicked = true;
                         }
+
                         $("#users-table-header").show();
                         $("#users-table").show();
                     }
+                }
+                else {
+                    $("#no-users").show();
+
+                    forUserHide();
                 }
             }
         }
     });
 }
+
+var forUserHide = function () {
+    $("#flights-table").hide();
+    $("#tickets-table").hide();
+
+    $("#flights-table-header").hide();
+    $("#create-flight-admin-btn").hide();
+    $("#tickets-table-header").hide();
+
+    $("#no-tickets").hide();
+    $("#no-flights").hide();
+};
 
 var formatDate = function (date) {
     console.log(date);
